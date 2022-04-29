@@ -27,4 +27,18 @@ const viewDepartments = () => {
     return;
   })
 }
-viewDepartments();
+// viewDepartments();
+
+// Displays the roles data
+const viewRoles = () => {
+  const sql = `SELECT * FROM roles`;
+  db.query(sql, (err,rows) => {
+    if(err) {
+      console.log(err);
+      return;
+    }
+    console.table(rows);
+    return;
+  })
+}
+viewRoles();
