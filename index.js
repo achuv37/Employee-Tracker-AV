@@ -1,5 +1,6 @@
 const mysql = require('mysql2');
 const inquirer = require ('inquirer');
+const cTable = require('console.table');
 require('dotenv').config();
 
 // Connect to our database
@@ -7,9 +8,23 @@ const db = mysql.createConnection(
   {
     host: 'localhost',
     // mysql password
-    user: 'process.env.DB_USER',
-    password: 'process.env.DB_PW',
-    database: 'process.env.DB_NAME'
+    user: 'root',
+    password: 'Aswathyajesh01$',
+    database: 'employees'
   },
   console.log('connected to the database.')
 )
+
+// Function for displaying department data
+const viewDepartments = () => {
+  const sql = `SELECT * FROM departments`;
+  db.query(sql, (err,rows) => {
+    if(err) {
+      console.log(err);
+      return;
+    }
+    console.table(rows);
+    return;
+  })
+}
+viewDepartments();
