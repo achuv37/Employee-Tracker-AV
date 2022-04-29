@@ -15,6 +15,57 @@ const db = mysql.createConnection(
   console.log('connected to the database.')
 )
 
+// Employee Tracker function.
+// Inquirer prompt to ask questions to the user.
+const employeeTracker = () => {
+  inquirer
+      .prompt({
+        name: 'menu',
+        type: 'list',
+        message: 'What would you like to do?',
+        choices: [
+            'View all departments',
+            'View all roles',
+            'View all employees',
+            'Add a department',
+            'Add a role',
+            'Add an employee',
+            'Update an employee role'
+        ],
+      })
+      .then((answer) => {
+        switch (answer.menu) {
+          case 'View all departments':
+            viewDepartments();
+            break;
+           
+          case 'View all roles':
+            viewRoles();
+            break;
+            
+          case 'View all employees':
+            viewEmployee();
+            break;
+              
+          case 'Add a department':
+            addDepartment();
+            break;
+        
+          case 'Add a role':
+            addRole();
+            break;
+        
+          case 'Add an employee':
+            addEmployee();
+            break;
+
+          case 'Update an employee role':
+            updateEmployeeRole();
+            break;
+        }
+      });
+};
+
 // Function for displaying department data
 const viewDepartments = () => {
   const sql = `SELECT * FROM departments`;
@@ -27,7 +78,7 @@ const viewDepartments = () => {
     return;
   })
 }
-// viewDepartments();
+
 
 // Displays the roles data
 const viewRoles = () => {
@@ -41,7 +92,7 @@ const viewRoles = () => {
     return;
   })
 }
-//viewRoles();
+
 
 // Displays the employee data
 const viewEmployee = () => {
@@ -55,4 +106,10 @@ const viewEmployee = () => {
     return;
   })
 }
-viewEmployee();
+
+
+// Function to add a department, add a role, add a role. Used inquirer prompt to ask questions to the user.
+//const addDepartment = ()
+// const addRole = ()
+// const addEmployee = ()
+// const updateEmployeeRole =()
