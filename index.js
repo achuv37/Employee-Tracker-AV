@@ -41,4 +41,18 @@ const viewRoles = () => {
     return;
   })
 }
-viewRoles();
+//viewRoles();
+
+// Displays the employee data
+const viewEmployee = () => {
+  const sql = `SELECT * FROM employee`;
+  db.query(sql, (err,rows) => {
+    if(err) {
+      console.log(err);
+      return;
+    }
+    console.table(rows);
+    return;
+  })
+}
+viewEmployee();
