@@ -68,7 +68,7 @@ function viewDepartments() {
 }
 
 
-// // Displays the roles data
+ // Displays the roles data
 function viewRoles() {
   const sql = `SELECT * FROM roles`;
   db.query(sql, (err, rows) => {
@@ -82,7 +82,7 @@ function viewRoles() {
   })
 }
 
-// // Displays the employee data
+// Displays employee data
 function viewEmployee() {
   const sql = `SELECT * FROM employee`;
   db.query(sql, (err, rows) => {
@@ -159,5 +159,49 @@ function addDepartment() {
       });
     });
 };
+
+// Function to add a employee 
+function addEmployee () {
+  inquirer
+     .prompt([
+       
+      {
+        name:'firstName',
+        type: 'input',
+        message: "Enter new employee's first name"
+      },
+      {
+        name:'lastName',
+        type: 'input',
+        message: "Enter new employee's last name"
+      },
+      {
+        name:'roleSalary',
+        type: 'number',
+        message: "Enter new employee's salary"
+      },
+      {
+        name:'roleId',
+        type: 'number',
+        message: "Enter new employee's role id"
+      },
+      {
+        name:'managerId',
+        type: 'number',
+        message: "Enter new employee's manager id"
+      },
+
+     ]).then(function (answer) {
+       db.query(
+         `INSERT INTO employee (first_name, last_name, salary, role_id, manager_id)
+         VALUES ("${answer.firstName}", "${answer.lastName}", "${answer.roleSalary}", "${answer.roleId}", "${answer.managerId}");`,
+         function (err, data) {
+           console.log("Employee added");
+         }
+
+       );
+       viewEmployee();
+     });
+}
 
 employeeTracker();
