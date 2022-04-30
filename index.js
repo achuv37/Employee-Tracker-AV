@@ -204,4 +204,52 @@ function addEmployee () {
      });
 }
 
+// function for updating an employee
+function updateEmployeeRole() {
+  db.query('SELECT * FROM employee;' , function(err,data) {
+    inquirer
+        .prompt ([
+          {
+            name: 'employee',
+            type:'input',
+            message: 'Enter the id of the employee would you like to update.'
+          },
+          {
+            name: 'details',
+            type:'list',
+            message: 'Enter the data would you like to update?',
+            choices: [
+              'first_name',
+              'last_name',
+              'salary',
+              'role_id',
+              'manager_id'
+            ],
+          },
+          {
+            name: 'newData',
+            type:'input',
+            message: 'Enter the new value'
+          }
+
+        ]).then(function (answer) {
+          const sql = 
+          `UPDATE employee
+          SET ${answer.details} = "${answer.newData}"
+          WHERE id = ${answer.employee};`
+          db.query(sql, function(err,data) {
+            if (err) {
+              console.log(err);
+              return;
+            } else {
+              console.log("Employee data has been updated");
+              viewEmployee();
+            }
+          });
+        });
+
+  });
+};
+
+
 employeeTracker();
