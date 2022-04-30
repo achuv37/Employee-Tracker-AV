@@ -96,11 +96,10 @@ function viewEmployee() {
 }
 
 // Function to add a department, add a role, add a role. Used inquirer prompt to ask questions to the user.
-// const addDepartment = ()
-// const addEmployee = ()
-// const updateEmployeeRole =()
 
-/*function addRole() {
+// function to add role
+function addRole() {
+  db.query("SELECT * FROM roles;", function(err,data) {
   inquirer
     .prompt([
       {
@@ -109,24 +108,34 @@ function viewEmployee() {
         message: 'What is the job title?'
       },
       {
-        type: 'input',
+        type: 'number',
         name: 'salary',
         message: 'What is the salary for this job title?'
       },
       {
-        type: 'list',
-        name: 'department',
-        message: 'Which is the department for the job title?',
-        choices:  function() {
-           db.query('SELECT * FROM departments;', (err,res) => {
-             if(err) throw err;
-             console.log(res);
-            });
-            return ['test','test1'] 
+        type: 'number',
+        name: 'departmentId',
+        message: 'Which is the department Id for the new role?',
+        
+      },
+      
+    ]).then(function (answer) {
+      db.query(
+        `INSERT INTO roles (job_title, salary, department_id)
+        VALUES ("${answer.role}", "${answer.salary}", "${answer.departmentId}" );`,
+        function (err, data) {
+          if (err) {
+            console.log(err);
+            return;
+          } else {
+            console.log("New role added");
+            viewRoles();
+          }
         }
-      }
-    ])
-} */
+      );
+    });
+  } 
+)}
 
 // Function to add a department.
 function addDepartment() {
