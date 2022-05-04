@@ -175,11 +175,7 @@ function addEmployee () {
         type: 'input',
         message: "Enter new employee's last name"
       },
-      {
-        name:'roleSalary',
-        type: 'number',
-        message: "Enter new employee's salary"
-      },
+     
       {
         name:'roleId',
         type: 'number',
@@ -193,8 +189,8 @@ function addEmployee () {
 
      ]).then(function (answer) {
        db.query(
-         `INSERT INTO employee (first_name, last_name, salary, role_id, manager_id)
-         VALUES ("${answer.firstName}", "${answer.lastName}", "${answer.roleSalary}", "${answer.roleId}", "${answer.managerId}");`,
+         `INSERT INTO employee (first_name, last_name, role_id, manager_id)
+         VALUES ("${answer.firstName}", "${answer.lastName}", "${answer.roleId}", "${answer.managerId}");`,
          function (err, data) {
            console.log("Employee added");
          }
@@ -221,7 +217,6 @@ function updateEmployeeRole() {
             choices: [
               'first_name',
               'last_name',
-              'salary',
               'role_id',
               'manager_id'
             ],
