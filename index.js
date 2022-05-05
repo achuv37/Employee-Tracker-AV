@@ -246,5 +246,5 @@ function updateEmployeeRole() {
   });
 };
 
-
+// Calling the function
 employeeTracker();

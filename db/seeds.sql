@@ -1,3 +1,4 @@
+-- Loading table with data
 INSERT INTO departments (department_name)
 VALUES
     ('Sales Person'),
