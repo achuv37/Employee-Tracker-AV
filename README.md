@@ -13,6 +13,6 @@ Employee Tracker is a command-line application, used  to manage a company's empl
 * mysql
 
 ## Video
-
+https://www.youtube.com/watch?v=B9iWMFpFDJU
 ## Contributed by
 Aswathy
